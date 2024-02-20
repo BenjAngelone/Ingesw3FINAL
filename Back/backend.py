@@ -2,7 +2,8 @@ import time
 import mysql.connector
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
+print("Retraso en 15 segundos...")
+time.sleep(15)
 app = Flask(__name__)
 CORS(app, resources={r"/backend": {"origins": "*"}})
 
