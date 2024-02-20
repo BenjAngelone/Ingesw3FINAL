@@ -18,8 +18,6 @@ def conectar_a_bd():
 def recibir_texto():
     print("Recibiendo solicitud...")
     datos = request.get_json()
-    # Resto del código...
-
     palabra_original = datos.get('texto')
     palabra_en_espejo = palabra_original[::-1]
 
@@ -32,10 +30,15 @@ def recibir_texto():
     sql = "SELECT 1"
     cursor.execute(sql)
 
+    # Leer y descartar los resultados de la consulta
+    cursor.fetchall()
+
     if cursor.rowcount == 1:
         print("Acceso a la base de datos confirmado")
     else:
         print("Error al acceder a la base de datos")
+
+    cursor.close()  # Cerrar el cursor después de usarlo
 
     # Guardar datos en la base de datos
     cursor = conexion_db.cursor()
@@ -49,6 +52,7 @@ def recibir_texto():
 
     return jsonify({'palabra_en_espejo': palabra_en_espejo, 'frecuencias': frecuencias})
 
+
 def contar_frecuencias(conexion_db):
     cursor = conexion_db.cursor()
     sql = "SELECT original, COUNT(*) AS frecuencia FROM palabras GROUP BY original ORDER BY frecuencia DESC"
@@ -58,8 +62,9 @@ def contar_frecuencias(conexion_db):
     frecuencias = [{'palabra': palabra, 'frecuencia': frecuencia} for palabra, frecuencia in resultados]
     print('Frecuencias:', frecuencias)
 
-    return frecuencias
+    cursor.close()  # Cerrar el cursor después de usarlo
 
+    return frecuencias
 # ...
 
 

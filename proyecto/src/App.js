@@ -10,7 +10,7 @@ const MiComponente = () => {
   };
 
   const enviarTextoAlBackend = () => {
-    const urlBackend = 'http://0.0.0.0:5000/backend';
+    const urlBackend = 'http://localhost:5000/backend';
 
     fetch(urlBackend, {
       method: 'POST',
@@ -25,7 +25,7 @@ const MiComponente = () => {
         setFrecuencias(data.frecuencias);
       })
       .catch(error => {
-        console.error('Error al enviar datos al backend:', error);
+        console.error('Error al enviar datos http://ingesw3-backend-1:5000/ al backend:', error);
       });
   };
 

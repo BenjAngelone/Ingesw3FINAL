@@ -1,8 +1,22 @@
-FROM mysql:latest
+# Use the official Python image as base image
+FROM python:3.8-slim
 
-# Variables de entorno para configurar la base de datos
-ENV MYSQL_ROOT_PASSWORD=Benjamin15
-ENV MYSQL_DATABASE=basededatospalabra
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Copiar el script SQL a la carpeta /docker-entrypoint-initdb.d/
-COPY DATABASE.sql /docker-entrypoint-initdb.d/
+# Set the working directory in the container
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container at /app
+COPY . /app/
+
+# Expose port 5000
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python", "app.py"]
