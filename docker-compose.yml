@@ -1,5 +1,8 @@
 version: '3.8'
 
+networks:
+  backend-frontend:
+
 services:
   mysql:
     image: mysql:latest
@@ -8,7 +11,8 @@ services:
       MYSQL_DATABASE: basededatospalabra
     ports:
       - "3306:3306"
-    
+    networks:
+      - backend-frontend
     volumes:
       - ./BD/database.sql:/docker-entrypoint-initdb.d/database.sql
 
@@ -18,7 +22,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    
+    networks:
+      - backend-frontend
     depends_on:
       - mysql
 
@@ -28,8 +33,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    
     depends_on:
       - backend
-
-
+    networks:
+      - backend-frontend
