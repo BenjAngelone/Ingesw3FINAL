@@ -25,9 +25,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r Back/requirements.txt
 
-      - name: Install flask-cors (optional)
-        run: pip install flask-cors # Only needed if not in requirements.txt
-
       - name: Obtener dirección IP del contenedor de la base de datos
         run: docker inspect -f '{{ .NetworkSettings.IPAddress }}' basededatos > temp_db_ip.txt
       - name: Leer dirección IP de archivo temporal
