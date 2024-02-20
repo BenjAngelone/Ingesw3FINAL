@@ -15,7 +15,7 @@ def conectar_a_bd():
     return conexion_db
 @app.route('/test', methods=['GET'])
 def test_backend():
-    return jsonify({"respuesta": "Ok"})
+    return jsongify({"respuesta": "Ok"})
 @app.route('/backend', methods=['POST'])
 def recibir_texto():
     print("Recibiendo solicitud...")
@@ -28,14 +28,7 @@ def recibir_texto():
 
     # Comprobar el acceso a la base de datos
     conexion_db = conectar_a_bd()
-    cursor = conexion_db.cursor()
-    if conexion_db is not None:
-    print("¡Acceso a la base de datos confirmado!")
-    # ... (resto del código dentro del bloque `if`)
-else:
-    print("Error al conectar a la base de datos")
-    return jsonify({"error": "No se pudo conectar a la base de datos"})
-    
+    cursor = conexion_db.cursor() 
     sql = "SELECT 1"
     cursor.execute(sql)
 
