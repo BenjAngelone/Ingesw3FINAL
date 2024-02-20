@@ -9,21 +9,39 @@ jobs:
   test:
     runs-on: ubuntu-latest 
 
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: Benjamin15
+          MYSQL_DATABASE: basededatospalabra
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+      backend:
+        image: python:3.8
+        env:
+          MYSQL_HOST: mysql
+          MYSQL_USER: root
+          MYSQL_PASSWORD: Benjamin15
+          MYSQL_DATABASE: basededatospalabra
+        options: --network=backend-network
+
     steps:
       - uses: actions/checkout@v2
 
-      - name: Instalar dependencias
+      - name: Install dependencies
         run: pip install -r Back/requirements.txt
 
-      - name: Instalar flask-cors (optional)
+      - name: Install flask-cors (optional)
         run: pip install flask-cors  # Only needed if not in requirements.txt
 
-
+      - name: Create Docker network
+        run: docker network create backend-network
 
       - name: Start database
         run: docker-compose up -d
 
-      - name: Ejecutar tests unitarios
+      - name: Run unit tests
         run: python Back/Utests.py
 
       - name: Stop database
