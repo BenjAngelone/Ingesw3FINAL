@@ -17,15 +17,6 @@ jobs:
           MYSQL_DATABASE: basededatospalabra
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-      backend:
-        image: python:3.8
-        env:
-          MYSQL_HOST: mysql
-          MYSQL_USER: root
-          MYSQL_PASSWORD: Benjamin15
-          MYSQL_DATABASE: basededatospalabra
-        options: --network=backend-network
-
     steps:
       - uses: actions/checkout@v2
 
@@ -35,14 +26,11 @@ jobs:
       - name: Install flask-cors (optional)
         run: pip install flask-cors  # Only needed if not in requirements.txt
 
-      - name: Create Docker network
-        run: docker network create backend-network
-
-      - name: Start database
-        run: docker-compose up -d
+      - name: Start services
+        run: docker-compose -f Back/docker-compose.yml up -d
 
       - name: Run unit tests
         run: python Back/Utests.py
 
-      - name: Stop database
-        run: docker-compose down
+      - name: Stop services
+        run: docker-compose -f Back/docker-compose.yml down
