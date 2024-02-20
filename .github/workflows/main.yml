@@ -28,9 +28,12 @@ jobs:
 
       - name: Start services
         run: docker-compose -f docker-compose.yml up -d
-        
+
       - name: Check service logs
         run: docker-compose -f docker-compose.yml logs basededatos
+
+      - name: Get MySQL container IP
+        run: echo "MySQL container IP: $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ingesw3final_basededatos_1)"
 
       - name: Run unit tests
         run: python Back/Utests.py
