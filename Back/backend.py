@@ -13,7 +13,9 @@ def conectar_a_bd():
         database="basededatospalabra"
     )
     return conexion_db
-
+@app.route('/test', methods=['GET'])
+def test_backend():
+    return jsonify({"respuesta": "Ok"})
 @app.route('/backend', methods=['POST'])
 def recibir_texto():
     print("Recibiendo solicitud...")
