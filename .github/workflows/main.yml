@@ -27,7 +27,7 @@ jobs:
         run: pip install flask-cors  # Only needed if not in requirements.txt
 
       - name: Start services
-        run: docker-compose -f Back/docker-compose.yml up -d
+        run: docker-compose -f docker-compose.yml up -d
 
       - name: Run unit tests
         run: python Back/Utests.py
