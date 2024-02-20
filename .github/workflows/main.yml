@@ -15,5 +15,8 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r Back/requirements.txt
 
+      - name: Instalar flask-cors (optional)
+        run: pip install flask-cors  # Only needed if not in requirements.txt
+
       - name: Ejecutar tests unitarios
         run: python Back/Utests.py
