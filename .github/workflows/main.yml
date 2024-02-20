@@ -1,0 +1,19 @@
+name: Test unitarios Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Instalar dependencias
+        run: pip install Back/requirements.txt
+
+      - name: Ejecutar tests unitarios
+        run: python Back/Utests.py
