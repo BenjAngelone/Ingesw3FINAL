@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     services:
       basededatos:
@@ -26,14 +26,16 @@ jobs:
         run: pip install -r Back/requirements.txt
 
       - name: Install flask-cors (optional)
-        run: pip install flask-cors  # Only needed if not in requirements.txt
+        run: pip install flask-cors # Only needed if not in requirements.txt
+
+      - name: Imprimir variable DB_HOST
+        run: echo "La dirección del contenedor de la base de datos (DB_HOST) es: $DB_HOST"
 
       - name: Start services
         run: docker-compose -f docker-compose.yml up -d
 
       - name: Wait for MySQL to be ready
         run: docker-compose -f docker-compose.yml exec -T basededatos sh -c 'until mysqladmin ping -h localhost; do sleep 1; done'
-
 
       - name: Run unit tests
         run: python Back/Utests.py
