@@ -15,6 +15,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: Benjamin15
           MYSQL_DATABASE: basededatospalabra
+        ports:
+          - "3306:3306"
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -29,8 +31,8 @@ jobs:
       - name: Start services
         run: docker-compose -f docker-compose.yml up -d
 
-      - name: Check service logs
-        run: docker-compose -f docker-compose.yml logs basededatos
+      - name: Wait for MySQL to be ready
+        run: docker-compose -f docker-compose.yml exec -T basededatos sh -c 'until mysqladmin ping -h localhost; do sleep 1; done'
 
       - name: Get MySQL container IP
         run: echo "MySQL container IP: $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ingesw3final_basededatos_1)"
