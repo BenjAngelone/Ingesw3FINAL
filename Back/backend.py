@@ -15,7 +15,7 @@ def conectar_a_bd():
     return conexion_db
 @app.route('/test', methods=['GET'])
 def test_backend():
-    return jsongify({"respuesta": "Ok"})
+    return jsonify({"respuesta": "Ok"})
 @app.route('/backend', methods=['POST'])
 def recibir_texto():
     print("Recibiendo solicitud...")
