@@ -2,7 +2,7 @@
 FROM python:3.8
 
 # Establece el directorio de trabajo
-WORKDIR /
+WORKDIR /Back
 
 # Copia los archivos necesarios al contenedor
 COPY requirements.txt .
