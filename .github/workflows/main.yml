@@ -34,8 +34,6 @@ jobs:
       - name: Wait for MySQL to be ready
         run: docker-compose -f docker-compose.yml exec -T basededatos sh -c 'until mysqladmin ping -h localhost; do sleep 1; done'
 
-      - name: Get MySQL container IP
-        run: echo "MySQL container IP: $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ingesw3final_basededatos_1)"
 
       - name: Run unit tests
         run: python Back/Utests.py
