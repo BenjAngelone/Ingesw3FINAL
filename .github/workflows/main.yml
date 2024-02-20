@@ -12,14 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Instalar dependencias
+        run: pip install -r Back/requirements.txt
+
+      - name: Instalar flask-cors (optional)
+        run: pip install flask-cors  # Only needed if not in requirements.txt
+
+      
+        
 
       - name: Start database
         run: docker-compose up -d
 
-      - name: Run tests
-        run: python -m unittest tests.TestBackend
+      - name: Ejecutar tests unitarios
+        run: python Back/Utests.py
 
       - name: Stop database
         run: docker-compose down
