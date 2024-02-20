@@ -1,0 +1,5 @@
+{
+    "dotnet-test-explorer.testProjectPath": "Utets",
+    "dotnet-test-explorer.testFileSuffix": ".Tests.dll",
+    "otra-configuracion": "valor"
+}
