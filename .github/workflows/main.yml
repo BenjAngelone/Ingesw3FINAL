@@ -18,8 +18,7 @@ jobs:
       - name: Instalar flask-cors (optional)
         run: pip install flask-cors  # Only needed if not in requirements.txt
 
-      
-        
+
 
       - name: Start database
         run: docker-compose up -d
