@@ -4,7 +4,7 @@ networks:
   backend-frontend:
 
 services:
-  mysql:
+  basededatos:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: Benjamin15
@@ -25,7 +25,7 @@ services:
     networks:
       - backend-frontend
     depends_on:
-      - mysql
+      - basededatos
 
   frontend:
     build:
