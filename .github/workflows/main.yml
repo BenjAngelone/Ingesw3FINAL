@@ -30,7 +30,7 @@ jobs:
         run: docker-compose -f docker-compose.yml up -d
         
       - name: Check service logs
-        run: docker-compose -f docker-compose.yml logs mysql
+        run: docker-compose -f docker-compose.yml logs basededatos
 
       - name: Run unit tests
         run: python Back/Utests.py
