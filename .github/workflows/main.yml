@@ -26,13 +26,12 @@ jobs:
 
       - name: Wait for services to be ready
         run: |
-          while [ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:your_port)" != "200" ]; do sleep 1; done
+          while [ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:5000)" != "200" ]; do sleep 1; done
 
-      - name: Copy Utest.py into Docker container
+      - name: Copy Utest.py into backend container
         run: |
-          docker cp Utest.py CONTAINER_ID:/Back/Utest.py
+          docker cp Utest.py $(docker-compose ps -q backend):/Back/Utest.py
 
       - name: Run tests
         run: |
-          docker-compose exec your_service_name python /Back/Utest.py
-
+          docker-compose exec backend python /Back/Utest.py
