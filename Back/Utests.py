@@ -1,8 +1,9 @@
 import unittest
 from flask import jsonify
 from backend import app
+import time
 from backend import app, conectar_a_bd, contar_frecuencias
-
+time.sleep(25)
 class TestBackend(unittest.TestCase):
 
     def setUp(self):
