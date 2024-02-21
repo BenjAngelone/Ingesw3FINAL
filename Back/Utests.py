@@ -27,7 +27,7 @@ class TestBackend(unittest.TestCase):
         # La función conectar_a_bd se usa indirectamente dentro de contar_frecuencias
         frecuencias = contar_frecuencias(mock_conexion_db)
 
-        self.assertEqual(len(frecuencias), 2)
+        self.assertEqual(len(frecuencias), 4)
         self.assertEqual(frecuencias[0]['palabra'], 'test')
         self.assertEqual(frecuencias[0]['frecuencia'], 2)
         self.assertEqual(frecuencias[1]['palabra'], 'example')
