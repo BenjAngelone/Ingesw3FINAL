@@ -32,7 +32,21 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(frecuencias[0]['frecuencia'], 2)
         self.assertEqual(frecuencias[1]['palabra'], 'example')
         self.assertEqual(frecuencias[1]['frecuencia'], 3)
-
+    def test_test_backend(self):
+        with app.test_client() as client:
+            # Enviamos una solicitud GET a '/test' con la palabra 'hello'
+            response = client.get('/test')
+            data = response.get_json()
+    
+            # Verificamos que la solicitud fue exitosa
+            self.assertEqual(response.status_code, 200)
+    
+            # Verificamos que la palabra invertida sea la correcta
+            self.assertEqual(data['palabra_original'], 'hello')
+            self.assertEqual(data['palabra_en_espejo'], 'olleh')
+    
+            # Imprimimos un mensaje indicando que la prueba pasó exitosamente
+            print("Prueba test_test_backend pasó exitosamente.")
     def test_test_backend(self):
         with app.test_client() as client:
             response = client.get('/test')
