@@ -25,7 +25,18 @@ def conectar_a_bd():
 
 @app.route('/test', methods=['GET'])
 def test_backend():
-    return jsonify({"respuesta": "Ok"})
+     if request.method == 'POST':
+        print("Recibiendo solicitud...")
+        datos = request.get_json()
+        palabra_original = datos.get('texto')
+        palabra_en_espejo = palabra_original[::-1]
+
+        print('Texto recibido en el backend:', palabra_original)
+        print('Palabra en espejo:', palabra_en_espejo)
+
+        return jsonify({"palabra_original": palabra_original, "palabra_en_espejo": palabra_en_espejo})
+    else:
+        return jsonify({"mensaje": "Método no permitido"}), 405
 
 @app.route('/backend', methods=['POST'])
 def recibir_texto():
