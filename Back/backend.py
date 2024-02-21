@@ -2,8 +2,10 @@ import time
 import mysql.connector
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
 print("Retraso en 15 segundos...")
 time.sleep(15)
+
 app = Flask(__name__)
 CORS(app, resources={r"/backend": {"origins": "*"}})
 
@@ -25,7 +27,7 @@ def conectar_a_bd():
 
 @app.route('/test', methods=['GET'])
 def test_backend():
-     if request.method == 'POST':
+    if request.method == 'POST':
         print("Recibiendo solicitud...")
         datos = request.get_json()
         palabra_original = datos.get('texto')
@@ -35,7 +37,7 @@ def test_backend():
         print('Palabra en espejo:', palabra_en_espejo)
 
         return jsonify({"palabra_original": palabra_original, "palabra_en_espejo": palabra_en_espejo})
-      else:
+    else:
         return jsonify({"mensaje": "Método no permitido"}), 405
 
 @app.route('/backend', methods=['POST'])
@@ -75,7 +77,6 @@ def recibir_texto():
     frecuencias = contar_frecuencias(conexion_db)
 
     return jsonify({'palabra_en_espejo': palabra_en_espejo, 'frecuencias': frecuencias})
-
 
 def contar_frecuencias(conexion_db):
     cursor = conexion_db.cursor()
