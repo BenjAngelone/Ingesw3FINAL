@@ -7,7 +7,7 @@ services:
   basededatos:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: Benjamin15
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: basededatospalabra
     ports:
       - "3306:3306"
