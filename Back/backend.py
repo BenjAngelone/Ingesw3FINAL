@@ -13,7 +13,7 @@ def conectar_a_bd():
     while True:
         try:
             conexion_db = mysql.connector.connect(
-                host=" 0.0.0.0:3306",
+                host="ingesw3final_basededatos_1",
                 user="root",
                 password="Benjamin15",
                 database="basededatospalabra"
