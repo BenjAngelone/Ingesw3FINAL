@@ -47,6 +47,5 @@ class TestBackend(unittest.TestCase):
     
             # Imprimimos un mensaje indicando que la prueba pasó exitosamente
             print("Prueba test_test_backend pasó exitosamente.")
-    def test_test_backend(self):
-        with app.test_client() as client:
-            response = client.get('/test')
+if __name__ == '__main__':
+    unittest.main()
