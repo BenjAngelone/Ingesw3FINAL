@@ -15,7 +15,7 @@ def conectar_a_bd():
             conexion_db = mysql.connector.connect(
                 host="ingesw3final_basededatos_1",
                 user="root",
-                password="Benjamin15",
+                password="root",
                 database="basededatospalabra"
             )
             print("Conexión exitosa a la base de datos")
