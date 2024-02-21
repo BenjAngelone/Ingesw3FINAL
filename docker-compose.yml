@@ -37,3 +37,9 @@ services:
       - backend
     networks:
       - backend-frontend
+
+  print-ip:
+    image: alpine
+    depends_on:
+      - basededatos
+    command: sh -c "sleep 10 && echo 'MySQL container IP: $(getent hosts mysql | awk '{ print $1 }')'"
