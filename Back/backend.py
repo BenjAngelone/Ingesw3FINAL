@@ -35,7 +35,7 @@ def test_backend():
         print('Palabra en espejo:', palabra_en_espejo)
 
         return jsonify({"palabra_original": palabra_original, "palabra_en_espejo": palabra_en_espejo})
-    else:
+      else:
         return jsonify({"mensaje": "Método no permitido"}), 405
 
 @app.route('/backend', methods=['POST'])
